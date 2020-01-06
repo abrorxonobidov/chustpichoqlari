@@ -5,15 +5,15 @@ use yii\widgets\DetailView;
 
 /**
  * @var $this yii\web\View
- * @var $model common\models\transactions\TransactionsPayme
+ * @var $model common\models\transactions\TransactionsClick
  */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Payme to‘lovlar'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('main', 'Click to‘lovlar'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<div class="transactions-payme-view">
+<div class="transactions-click-view">
 
     <p>
         <?= Html::a(Yii::t('main', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -31,13 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'order_id',
-            'paycom_transaction_id',
+            'click_trans_id',
+            'click_paydoc_id',
+            'service_id',
             'amount',
-            'reason',
-            'receivers',
-            'paycom_time',
-            'paycom_time_datetime',
-            'create_time',
             'perform_time',
             'cancel_time',
             'status',

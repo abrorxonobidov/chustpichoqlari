@@ -36,7 +36,7 @@ class TransactionsClick extends LocalActiveRecord
     public function rules()
     {
         return [
-            [['order_id', 'click_trans_id', 'click_paydoc_id', 'service_id', 'perform_time', 'cancel_time'], 'required'],
+            [['order_id', 'click_trans_id', 'click_paydoc_id', 'service_id', 'perform_time'], 'required'],
             [['order_id', 'click_trans_id', 'click_paydoc_id', 'service_id', 'amount', 'status'], 'integer'],
             [['perform_time', 'cancel_time'], 'safe'],
             [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Orders::className(), 'targetAttribute' => ['order_id' => 'id']],

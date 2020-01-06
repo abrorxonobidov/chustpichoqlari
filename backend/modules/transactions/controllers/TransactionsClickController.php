@@ -3,16 +3,16 @@
 namespace backend\modules\transactions\controllers;
 
 use Yii;
-use common\models\transactions\TransactionsPayme;
-use common\models\transactions\TransactionsPaymeSearch;
+use common\models\transactions\TransactionsClick;
+use common\models\transactions\TransactionsClickSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TransactionsPaymeController implements the CRUD actions for TransactionsPayme model.
+ * TransactionsClickController implements the CRUD actions for TransactionsClick model.
  */
-class TransactionsPaymeController extends Controller
+class TransactionsClickController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class TransactionsPaymeController extends Controller
     }
 
     /**
-     * Lists all TransactionsPayme models.
+     * Lists all TransactionsClick models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TransactionsPaymeSearch();
+        $searchModel = new TransactionsClickSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class TransactionsPaymeController extends Controller
     }
 
     /**
-     * Displays a single TransactionsPayme model.
+     * Displays a single TransactionsClick model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class TransactionsPaymeController extends Controller
     }
 
     /**
-     * Creates a new TransactionsPayme model.
+     * Creates a new TransactionsClick model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new TransactionsPayme();
+        $model = new TransactionsClick();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class TransactionsPaymeController extends Controller
     }
 
     /**
-     * Updates an existing TransactionsPayme model.
+     * Updates an existing TransactionsClick model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class TransactionsPaymeController extends Controller
     }
 
     /**
-     * Deletes an existing TransactionsPayme model.
+     * Deletes an existing TransactionsClick model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class TransactionsPaymeController extends Controller
     }
 
     /**
-     * Finds the TransactionsPayme model based on its primary key value.
+     * Finds the TransactionsClick model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return TransactionsPayme the loaded model
+     * @return TransactionsClick the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = TransactionsPayme::findOne($id)) !== null) {
+        if (($model = TransactionsClick::findOne($id)) !== null) {
             return $model;
         }
 
