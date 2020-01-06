@@ -2,6 +2,7 @@
 
 namespace backend\modules\orders\controllers;
 
+use common\components\DebugHelper;
 use Yii;
 use common\models\orders\Orders;
 use common\models\orders\OrdersSearch;
@@ -21,9 +22,9 @@ class OrdersController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
-                    'delete' => ['POST'],
+                    'cancel-order' => ['POST'],
                 ],
             ],
         ];
@@ -96,17 +97,20 @@ class OrdersController extends Controller
     }
 
     /**
-     * Deletes an existing Orders model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * Cancels an existing Orders model bu changing its status.
+     * If cancellation is successful, the browser will be redirected to the $return page.
      * @param integer $id
+     * @param string $return
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException | mixed if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionCancelOrder($id, $return = 'index')
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        $model = $this->findModel($id);
+        if (!$model->cancelOrder()) {
+            DebugHelper::printSingleObject($model->errors, 1);
+        }
+        return $this->redirect([$return]);
     }
 
     /**

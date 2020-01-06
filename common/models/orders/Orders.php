@@ -47,7 +47,7 @@ class Orders extends LocalActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'amount', 'phone'], 'required'],
+            [['user_id', 'amount', 'phone', 'status'], 'required'],
             [['user_id', 'amount', 'status'], 'integer'],
             [['phone'], 'string', 'max' => 50],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
@@ -170,6 +170,12 @@ class Orders extends LocalActiveRecord
             $statusList[$key] = $status['title'];
         };
         return $statusList;
+    }
+
+    public function cancelOrder()
+    {
+        $this->status = self::STATUS_CANCELLED;
+        return $this->save(false);
     }
 
 }

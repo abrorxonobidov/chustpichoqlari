@@ -27,8 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'summary' => false,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
             'id',
             [
@@ -99,7 +100,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 )
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {cancel-order}',
+                'buttons' => [
+                    'cancel-order' => function ($url, Orders $model, $key) {
+                        return $model->status == Orders::STATUS_CANCELLED ? '' : Html::a(
+                            Html::icon('remove', ['class' => 'text-danger']),
+                            $url,
+                            [
+                                'title' => Yii::t('main', 'Bekor qilish'),
+                                'data' => [
+                                    'confirm' => Yii::t('main', 'Bekor qilishni istaysizmi?'),
+                                    'method' => 'post',
+                                ],
+                            ]
+                        );
+                    }
+                ]
+            ],
         ],
     ]); ?>
 
