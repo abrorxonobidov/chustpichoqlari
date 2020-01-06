@@ -26,6 +26,9 @@ return [
         'orders' => [
             'class' => 'backend\modules\orders\Orders',
         ],
+        'transactions' => [
+            'class' => 'backend\modules\transactions\Transactions',
+        ],
     ],
     'components' => [
         'request' => [

@@ -46,7 +46,7 @@ class TransactionsPayme extends LocalActiveRecord
             [['paycom_transaction_id'], 'string', 'max' => 25],
             [['receivers'], 'string', 'max' => 500],
             [['paycom_time'], 'string', 'max' => 13],
-            [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Orders::className(), 'targetAttribute' => ['order_id' => 'id']],
+            [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Orders::class, 'targetAttribute' => ['order_id' => 'id']],
         ];
     }
 
@@ -76,7 +76,7 @@ class TransactionsPayme extends LocalActiveRecord
      */
     public function getOrder()
     {
-        return $this->hasOne(Orders::className(), ['id' => 'order_id']);
+        return $this->hasOne(Orders::class, ['id' => 'order_id']);
     }
 
     /**
