@@ -78,6 +78,23 @@ $user = Yii::$app->user->identity;
                         'url' => ['/orders/orders']
                     ],
                     [
+                        'label' => Yii::t('main', 'To‘lovlar'),
+                        'icon' => 'dollar',
+                        'url' => '#',
+                        'items' => [
+                            [
+                                'label' => Yii::t('main', 'Payme to‘lovlar'),
+                                'icon' => 'dollar',
+                                'url' => ['/transactions/transactions-payme']
+                            ],
+                            [
+                                'label' => Yii::t('main', 'Click to‘lovlar'),
+                                'icon' => 'dollar',
+                                'url' => ['/transactions/transactions-click']
+                            ],
+                        ],
+                    ],
+                    [
                         'label' => 'Dev’s tools',
                         'icon' => 'gear',
                         'url' => '#',
