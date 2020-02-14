@@ -16,6 +16,7 @@ use Yii;
  *
  * @property Lists[] $lists
  * @property ListsCategoryLang[] $listsCategoryLangs
+ * @property ListsCategoryLang $lang
  *
  * @property string $lang_uz
  * @property string $lang_ru
@@ -29,6 +30,7 @@ use Yii;
  * @property integer $status_uz
  * @property integer $status_ru
  * @property integer $status_en
+ *
  */
 class ListsCategory extends LocalActiveRecord
 {
@@ -112,7 +114,7 @@ class ListsCategory extends LocalActiveRecord
      */
     public function getLists()
     {
-        return $this->hasMany(Lists::className(), ['category_id' => 'id']);
+        return $this->hasMany(Lists::class, ['category_id' => 'id']);
     }
 
     /**
@@ -120,7 +122,7 @@ class ListsCategory extends LocalActiveRecord
      */
     public function getListsCategoryLangs()
     {
-        return $this->hasMany(ListsCategoryLang::className(), ['parent_id' => 'id']);
+        return $this->hasMany(ListsCategoryLang::class, ['parent_id' => 'id']);
     }
 
     /**
@@ -132,8 +134,11 @@ class ListsCategory extends LocalActiveRecord
         return new ListsCategoryQuery(get_called_class());
     }
 
-    public function getCurrentLang(){
-        return $this->hasOne(ListsCategoryLang::className(), ['parent_id' => 'id'])
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLang(){
+        return $this->hasOne(ListsCategoryLang::class, ['parent_id' => 'id'])
             ->onCondition(['lang' => Yii::$app->language]);
     }
 

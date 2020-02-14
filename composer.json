@@ -21,7 +21,9 @@
         "codemix/yii2-localeurls": "^1.7",
         "dmstr/yii2-adminlte-asset": "^2.1",
         "kartik-v/yii2-widgets": "*",
-        "2amigos/yii2-tinymce-widget": "~1.1"
+        "2amigos/yii2-tinymce-widget": "~1.1",
+        "ext-json": "*",
+        "ext-apache": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

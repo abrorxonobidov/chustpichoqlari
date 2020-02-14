@@ -37,6 +37,7 @@ use Yii;
  *
  * @property ListsCategory $category
  * @property ListsLang[] $listsLangs
+ * @property ListsLang $lang
  */
 class Lists extends LocalActiveRecord
 {
@@ -78,7 +79,7 @@ class Lists extends LocalActiveRecord
             [['date', 'category_id', 'status', 'title_uz', 'order'], 'required'],
             [['date'], 'safe'],
             [['preview_image', 'description_image'], 'string', 'max' => 50],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ListsCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ListsCategory::class, 'targetAttribute' => ['category_id' => 'id']],
             [
                 [
                     'lang_uz',
@@ -129,7 +130,7 @@ class Lists extends LocalActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(ListsCategory::className(), ['id' => 'category_id']);
+        return $this->hasOne(ListsCategory::class, ['id' => 'category_id']);
     }
 
     /**
@@ -137,7 +138,16 @@ class Lists extends LocalActiveRecord
      */
     public function getListsLangs()
     {
-        return $this->hasMany(ListsLang::className(), ['parent_id' => 'id']);
+        return $this->hasMany(ListsLang::class, ['parent_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLang()
+    {
+        return $this->hasOne(ListsLang::class, ['parent_id' => 'id'])
+            ->onCondition(['lang' => Yii::$app->language]);
     }
 
     /**

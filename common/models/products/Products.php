@@ -171,8 +171,8 @@ class Products extends LocalActiveRecord
     public function getPrice()
     {
         return $this->hasOne(Prices::class, ['product_id' => 'id'])
-            ->onCondition(['status' => 1])
-            ->orderBy(['id' => SORT_DESC]);
+            ->onCondition(['prices.status' => 1])
+            ->orderBy(['prices.id' => SORT_DESC]);
     }
 
     /**
