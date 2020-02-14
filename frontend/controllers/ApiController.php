@@ -98,13 +98,13 @@ class ApiController extends Controller
      * @throws NotFoundHttpException
      * @throws \yii\web\BadRequestHttpException
      */
-    /*public function beforeAction($action)
+    public function beforeAction($action)
     {
         $headers = apache_request_headers();
         if (empty($headers['Origin']) || !in_array($headers['Origin'], static::allowedDomains()))
             throw new NotFoundHttpException('Page not found');
         return parent::beforeAction($action);
-    }*/
+    }
 
 
     /**
