@@ -253,9 +253,10 @@ class LocalActiveRecord extends ActiveRecord
      * Returns File Upload Configuration for Kartik FileInput widget.
      * @param string $field
      * @param string $deleteUrl
+     * @param string $className
      * @return array
      */
-    public function inputImageConfig($field, $deleteUrl)
+    public function inputImageConfig($field, $deleteUrl, $className = LocalActiveRecord::class)
     {
         $config = [
             'path' => [],
@@ -278,7 +279,7 @@ class LocalActiveRecord extends ActiveRecord
                             'extra' => [
                                 'id' => $this->id,
                                 'field' => $field,
-                                'className' => LocalActiveRecord::class
+                                'className' => $className
                             ],
                         ]
                     ]

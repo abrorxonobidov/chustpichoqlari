@@ -72,7 +72,7 @@ use yii\widgets\MaskedInput;
     ?>
 
     <div class="row">
-        <? $anonsConfig = $model->inputImageConfig('image', Url::to(['/lists/lists/file-remove'])); ?>
+        <? $anonsConfig = $model->inputImageConfig('image', Url::to(['/lists/lists/file-remove']), \common\models\products\Products::class); ?>
         <div class="col-md-6">
             <?= $form->field($model, 'helpImage')
                 ->widget(FileInput::class, [

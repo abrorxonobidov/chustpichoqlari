@@ -85,7 +85,8 @@ class ApiController extends Controller
                     END as actual_amount
                     ');
                 },
-                'gallery'
+                'gallery',
+                'categoriesForApi',
             ])
             ->where(['products.status' => 1])
             ->asArray(true);
@@ -130,13 +131,14 @@ class ApiController extends Controller
 
     /**
      * @param int|null $offset
+     * @param int|null $limit
      * @return string
      */
-    public function actionProductList($offset = null)
+    public function actionProductList($offset = 0, $limit = 20)
     {
         $products = $this->getProductQuery()
             ->orderBy(['order' => SORT_ASC, 'id' => SORT_ASC])
-            ->limit(18)
+            ->limit($limit)
             ->offset($offset)
             ->all();
         return Json::encode($products);
@@ -152,6 +154,19 @@ class ApiController extends Controller
         $product = $this->getProductQuery()
             ->andWhere(['id' => $id])
             ->one();
+
+            if (($galleryFolder = @$product['gallery']['folder']) !== null ) {
+                $images = glob(Yii::$app->params['galleryUploadPath'] . $galleryFolder . "/{*.jpg,*.jpeg,*.gif,*.png}", GLOB_BRACE);
+                $gallery = [];
+                foreach ($images as $image) {
+                    $filePath = explode('/', $image);
+                    $fileName = end($filePath);
+                    $gallery[] = 'gallery/' . $galleryFolder . '/' . $fileName;
+                }
+                $product['gallery_items'] = $gallery;
+
+            };
+
         return Json::encode($product);
     }
 

@@ -202,6 +202,24 @@ class Products extends LocalActiveRecord
     }
 
 
+    /**
+     * @throws mixed
+     */
+    public function getCategoriesForApi()
+    {
+        $lang = Yii::$app->language;
+        return $this->hasMany(ProductCategory::class, ['id' => 'product_category_id'])
+            ->viaTable(ProductCategoryLink::tableName(), ['product_id' => 'id'])
+            ->select([
+                'id',
+                'image',
+                'order',
+                'title' => 'title_'.$lang,
+                'description' => 'description_'.$lang,
+                'status'
+            ])->where(['status' => 1]);
+    }
+
     public function getAllCategories()
     {
         return

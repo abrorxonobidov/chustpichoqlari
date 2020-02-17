@@ -26,7 +26,7 @@ use yii\bootstrap\Tabs;
             'content' => "<br>" .
                 $form->field($model, "title_$lang")->textInput() .
                 $form->field($model, "description_$lang")
-                    ->widget(TinyMce::className(), [
+                    ->widget(TinyMce::class, [
                         'options' => [
                             'rows' => 16,
                         ],
@@ -57,9 +57,9 @@ use yii\bootstrap\Tabs;
 
     <div class="row">
         <div class="col-md-6">
-            <? $anonsConfig = $model->inputImageConfig('image', Url::to(['/lists/lists/file-remove'])); ?>
+            <? $anonsConfig = $model->inputImageConfig('image', Url::to(['/lists/lists/file-remove']), \common\models\products\ProductCategory::class); ?>
             <?= $form->field($model, 'helpImage')
-                ->widget(FileInput::className(), [
+                ->widget(FileInput::class, [
                     'options' => ['accept' => 'image/*'],
                     'pluginOptions' => [
                         'previewFileType' => 'image',

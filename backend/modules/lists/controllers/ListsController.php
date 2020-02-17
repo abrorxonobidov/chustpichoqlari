@@ -181,7 +181,7 @@ class ListsController extends BaseController
         $model = $className::findOne($id);
         /** @var $model \yii\db\ActiveRecord*/
         $model->$field = '';
-        $model->save(false);
+        $model->updateAttributes([$field]);
 
         if (isset($file) && file_exists($file)) {
             unlink($file);

@@ -30,7 +30,7 @@ use kartik\file\FileInput;
                 $form->field($model, "title_$lang")->textInput() .
                 $form->field($model, "preview_$lang")->textarea(['rows' => 5]) .
                 $form->field($model, "description_$lang")
-                    ->widget(TinyMce::className(), [
+                    ->widget(TinyMce::class, [
                         'options' => ['rows' => 16],
                         'language' => 'en_GB',
                         'clientOptions' => [
@@ -71,7 +71,7 @@ use kartik\file\FileInput;
                 ]) ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'date')->widget(DatePicker::classname(), [
+            <?= $form->field($model, 'date')->widget(DatePicker::class, [
                 'type' => DatePicker::TYPE_COMPONENT_APPEND,
                 'value' => date('Y-m-d'),
                 'pluginOptions' => [
@@ -85,9 +85,9 @@ use kartik\file\FileInput;
 
     <div class="row">
         <div class="col-md-6">
-            <? $anonsConfig = $model->inputImageConfig('preview_image', Url::to(['/lists/lists/file-remove'])); ?>
+            <? $anonsConfig = $model->inputImageConfig('preview_image', Url::to(['/lists/lists/file-remove']), \common\models\lists\Lists::class); ?>
             <?= $form->field($model, 'helpPreviewImage')
-                ->widget(FileInput::className(), [
+                ->widget(FileInput::class, [
                     'options' => ['accept' => 'image/*'],
                     //'language' => 'en',
                     'pluginOptions' => [
@@ -105,9 +105,9 @@ use kartik\file\FileInput;
                 ]); ?>
         </div>
         <div class="col-md-6">
-            <? $anonsConfig = $model->inputImageConfig('description_image', Url::to(['/lists/lists/file-remove'])); ?>
+            <? $anonsConfig = $model->inputImageConfig('description_image', Url::to(['/lists/lists/file-remove']), \common\models\lists\Lists::class); ?>
             <?= $form->field($model, 'helpDescriptionImage')
-                ->widget(FileInput::className(), [
+                ->widget(FileInput::class, [
                     'options' => ['accept' => 'image/*'],
                     //'language' => 'en',
                     'pluginOptions' => [
