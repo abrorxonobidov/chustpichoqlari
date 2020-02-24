@@ -3,8 +3,6 @@
 /yii_test
 /yii_test.bat
 
-vendor
-
 # phpstorm project files
 .idea
 
@@ -28,3 +26,6 @@ phpunit.phar
 # vagrant runtime
 /.vagrant
 vagrant
+backend/web/assets
+frontend/web/uploads
+frontend/web/assets
