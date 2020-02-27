@@ -176,14 +176,16 @@ class ApiController extends Controller
     /**
      * @param $category_id
      * @param int|null $offset
+     * @param int|null $limit
      * @return string
      */
-    public function actionListsList($category_id, $offset = null)
+    public function actionListsList($category_id, $offset = null, $limit = 0)
     {
         $lists = $this->getListQuery()
             ->andWhere(['category_id' => $category_id])
             ->orderBy(['order' => SORT_ASC, 'id' => SORT_DESC])
             ->offset($offset)
+            ->limit($limit)
             ->all();
         return Json::encode($lists);
     }
