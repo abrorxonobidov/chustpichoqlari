@@ -101,6 +101,8 @@ class ApiController extends Controller
      */
     public function beforeAction($action)
     {
+        header('Set-Cookie: cross-site-cookie=name; SameSite=None; Secure');
+        setcookie('cross-site-cookie', 'name', ['SameSite' => 'None', 'Secure' => true]);
         $headers = apache_request_headers();
         if (empty($headers['Origin']) || !in_array($headers['Origin'], static::allowedDomains()))
             throw new NotFoundHttpException('Page not found');
