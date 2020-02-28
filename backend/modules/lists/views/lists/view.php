@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             [
-                'attribute' => 'category.currentLang.title',
+                'attribute' => 'category.lang.title',
                 'label' => 'Kategoriyasi'
             ],
             'date',

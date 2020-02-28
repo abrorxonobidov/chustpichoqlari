@@ -101,8 +101,7 @@ class ApiController extends Controller
      */
     public function beforeAction($action)
     {
-        header('Set-Cookie: cross-site-cookie=name; SameSite=None; Secure');
-        setcookie('cross-site-cookie', 'name', ['SameSite' => 'None', 'Secure' => true]);
+        setcookie('cross-site-cookie', 'name', ['SameSite' => 'none', 'secure' => true]);
         $headers = apache_request_headers();
         if (empty($headers['Origin']) || !in_array($headers['Origin'], static::allowedDomains()))
             throw new NotFoundHttpException('Page not found');
@@ -199,7 +198,7 @@ class ApiController extends Controller
     {
         $list = $this->getListQuery()
             ->andWhere(['id' => $id])
-            ->all();
+            ->one();
         return Json::encode($list);
     }
 
